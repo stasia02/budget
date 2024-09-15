@@ -1,4 +1,4 @@
-import occurrences
+from occurrences import *
 class payer:
     name = ""
     paycheck_amt = 0
@@ -13,7 +13,7 @@ class payer:
         """
         self.name = name
         self.paycheck_amt = paycheck_amt
-        self.pay_occurrence = occurrences.pay_occurrence
+        self.pay_occurrence = occurrences[pay_occurrence]
 
     def __str__(self) -> str:
         return f"name: {self.name}, paycheck_amt: {self.paycheck_amt}, pay_occurrence: {self.pay_occurrence},\nexpenses:\n{self.expenses}"

@@ -9,18 +9,14 @@ from budget import *
 
 class BudgetTest(unittest.TestCase):
 
-    def createExpense(self):
-        return
-
-    def createTest(self):
-        b = budget()
-        e = expense(10.50, "MONTHLY", "test expense", (2024, 9, 15), False)
-        print(e)
-        p = payer("Anastasia", 2995.90, "semi_monthly")
-        print(p)
-        print(p)
-        b.addPayer(p)
-        
+    def test_createBudget(self):
+        b = budget("testBudget.json")
+        for p in b.payers:
+            print(p)
+        for key, expenseDict in b.expenses.items():
+            print(key, " expenses:")
+            for expense in expenseDict:
+                print(expense)       
 
 if __name__ == '__main__':
     unittest.main()

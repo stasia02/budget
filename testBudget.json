@@ -16,28 +16,33 @@
             "cost": 1775,
             "occurrence": "monthly",
             "desc": "rent",
-            "nxt_occur": [2024, 10, 1],
-            "shared": 1
+            "last_occur": [2024, 10, 1],
+            "shared": 1,
+            "payer": null
         },
         {
             "cost": 160,
             "occurrence": "bimonthly",
             "desc": "water",
-            "nxt_occur": [2024, 10, 1]
+            "last_occur": [2024, 10, 1],
+            "shared": 1,
+            "payer": null
         },
         {
             "cost": 89,
             "occurrence": "yearly",
             "desc": "duolingo",
-            "nxt_occur": [2025, 5, 1]
+            "last_occur": [2025, 5, 1],
+            "shared": 1,
+            "payer": null
         },
         {
             "cost": 150,
             "occurrence": "PER_PAYCHECK",
             "desc": "anastasia's gas",
-            "nxt_occur": [],
+            "last_occur": [],
             "shared": 0,
-            "payer": 0
+            "payer": "Anastasia"
         }
     ]
 }
