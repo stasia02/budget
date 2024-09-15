@@ -5,8 +5,9 @@ class payer:
     paycheck_amt = 0
     pay_occurrence = None
     last_check = None
+    curr_checking = 0
 
-    def __init__(self, name: str, paycheck_amt: float, pay_occurrence: str, last_check: list):
+    def __init__(self, name: str, paycheck_amt: float, pay_occurrence: str, last_check: list, curr_checking: float):
         """
         Args:
             name - name of payer
@@ -17,6 +18,7 @@ class payer:
         self.paycheck_amt = paycheck_amt
         self.pay_occurrence = occurrences[pay_occurrence]
         self.last_check = dt.date(last_check[0], last_check[1], last_check[2])
+        self.curr_checking = curr_checking
 
     def __str__(self) -> str:
         return f"name: {self.name}, paycheck_amt: {self.paycheck_amt}, pay_occurrence: {self.pay_occurrence},\nexpenses:\n{self.expenses}"
