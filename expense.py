@@ -6,6 +6,12 @@ from typing import Type
 
 class expense:
     shared = True
+    payer = None
+    cost = 0
+    occurrence = None
+    description = ""
+    last_occur = None
+    
     
     def __init__(self):
         return
@@ -29,14 +35,26 @@ class expense:
     self.shared = shared
     self.payer = payer"""
 
-    def getNextOccurrence():
-        return
+    def getNextBillDate(self):
+        match self.occurrence.name:
+            case "MONTHLY":
+                month = datetime.timedelta(days=30)
+                self.last_occur += month
+                return self.last_occur
+            case "YEARLY":
+                year = datetime.timedelta(days=365)
+                self.last_occur += year
+                return self.last_occur
+            case "PER_PAYCHECK":
+                self.last_occur = self.payer.getNextPay()
+                return self.last_occur
+
     
     def __repr__(self) -> str:
         return "expense()"
     
     def __str__(self) -> str:
-        return f"desc: {self.desc}\ncost: {self.cost}\noccurence: {self.occurrence}\nnext occurrence: {self.nxt_occur}\nshared: {self.shared}"
+        return f"desc: {self.desc}\ncost: {self.cost}\noccurence: {self.occurrence}\nlast occurrence: {self.last_occur}\nshared: {self.shared}"
 
 def jsonToExpense(json: dict, payers: dict):
     e = expense()
@@ -50,7 +68,7 @@ def jsonToExpense(json: dict, payers: dict):
                 e.desc = item
             case "last_occur":
                 if len(item):
-                    e.last_occur = datetime.datetime(item[0], item[1], item[2])
+                    e.last_occur = datetime.date(item[0], item[1], item[2])
                 else:
                     e.last_occur = None
             case "shared":

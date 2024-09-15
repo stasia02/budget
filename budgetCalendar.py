@@ -5,3 +5,5 @@ class budgetCalendar(calendar.TextCalendar):
     
     def __init__(self, firstweekday: int = 0) -> None:
         super().__init__(firstweekday)
+
+    

@@ -10,7 +10,7 @@ class budget:
             budgetJson = json.load(jsonFile)
 
         for p in budgetJson["payers"]:
-            self.addPayer(payer=payer(p["name"], p["paycheck_amt"], p["pay_occurrence"]))
+            self.addPayer(payer=payer(p["name"], p["paycheck_amt"], p["pay_occurrence"], p["last_check"]))
 
         for e in budgetJson["expenses"]:
             expense = jsonToExpense(e, self.payers)

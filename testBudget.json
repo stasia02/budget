@@ -3,12 +3,14 @@
         {
             "name": "Anastasia",
             "paycheck_amt": 2995.50,
-            "pay_occurrence": "SEMI_MONTHLY"
+            "pay_occurrence": "SEMI_MONTHLY",
+            "last_check": [2024, 9, 13]
         },
         {
             "name": "Adam",
             "paycheck_amt": 2666.66,
-            "pay_occurrence": "BIWEEKLY"
+            "pay_occurrence": "BIWEEKLY",
+            "last_check": [2024, 9, 10]
         }
     ],
     "expenses": [
