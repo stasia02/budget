@@ -8,3 +8,4 @@ class occurrences(Enum):
     PER_PAYCHECK = 5
     BIMONTHLY = 6
     BIWEEKLY = 7
+    WEEKLY = 8
