@@ -65,7 +65,7 @@ class budget:
         """
         bank = {}
         for payer in self.payers:
-            bank[payer.name] = payer.check_history
+            bank[payer.name] = payer.check_history.head.value
 
         assert bank["Anastasia"] == 4213.64, "Anastasia should have 4213.64 in the bank"
         assert bank["Adam"] == 3234.32, "Adam should have 3234.32 in the bank"
@@ -75,7 +75,6 @@ class budget:
         # get days left in month
         _, days_left = monthrange(today.year, today.month)
         days_left -= today.day
-        assert days_left == 2, f"days_left is not: {days_left}"
 
         payday = False
         while today.month <= month:

@@ -1,9 +1,14 @@
-import calendar
 
-class budgetCalendar(calendar.TextCalendar):
-    dates = {}
+class budgetCalendar():
+    storage = {}
     
-    def __init__(self, firstweekday: int = 0) -> None:
-        super().__init__(firstweekday)
+    def __init__(self, budget) -> None:
+        self.budget = budget
+
+    def display(self):
+        pass
+
+    def getMonth(self, year, month):
+        pass
 
     
