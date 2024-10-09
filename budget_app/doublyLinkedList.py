@@ -1,6 +1,5 @@
 class node:
     def __init__(self, pre=None, value=None) -> None:
-        # self.next = next
         self.pre = pre
         self.value = value
         self.next = None
@@ -19,6 +18,13 @@ class dll:
     def __init__(self, date):
         self.head = self.curr = node(value=date)
         self.length += 1
+
+    def __getitem__(self, date):
+        curr = self.head
+        while curr and curr.value < date:
+            if curr.next:
+                curr = curr.next
+        return curr
 
     def __repr__(self) -> str:
         return f"dll({self.head})"
@@ -48,7 +54,7 @@ class dll:
         # return curr node of dll
         return self.curr
     
-    def next(self, func, args):
+    def next(self, func, args) -> node:
         # check for next node
         if self.curr.next:
             # set curr node of dll to next node

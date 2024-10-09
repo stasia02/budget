@@ -5,16 +5,14 @@
             "paycheck_amt": 2995.50,
             "pay_occurrence": "SEMI_MONTHLY",
             "last_check": [2024, 9, 13],
-            "curr_checking": 4213.64,
-            "rate": 0.6
+            "curr_checking": 4213.64
         },
         {
             "name": "Adam",
             "paycheck_amt": 2666.66,
             "pay_occurrence": "BIWEEKLY",
             "last_check": [2024, 9, 10],
-            "curr_checking": 3234.32,
-            "rate": 0.4
+            "curr_checking": 3234.32
         }
     ],
     "expenses": [

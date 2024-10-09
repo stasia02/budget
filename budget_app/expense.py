@@ -7,8 +7,10 @@ class expense:
     shared = True
     payer = None
     cost = 0
-    occurrence = None
-    description = ""
+    occurrence: occurrences
+    bill_history: dll
+    desc: str
+    split_rate = []
      
     def __init__(self):
         return
@@ -33,7 +35,7 @@ class expense:
     def __str__(self) -> str:
         return f"desc: {self.desc}\ncost: {self.cost}\noccurence: {self.occurrence}\nlast occurrence: {self.last_occur}\nshared: {self.shared}"
 
-def jsonToExpense(json: dict, payers: dict):
+def jsonToExpense(json: dict, payers: list):
     e = expense()
     for key, item in json.items():
         match key:
@@ -54,4 +56,6 @@ def jsonToExpense(json: dict, payers: dict):
             case "payer":
                 if item:
                     e.payer = item
+            case "split":
+                e.split_rate = item
     return e

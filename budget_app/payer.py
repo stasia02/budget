@@ -2,10 +2,11 @@ from budget_app.occurrences import *
 from budget_app.doublyLinkedList import *
 import datetime as dt
 class payer:
-    name = ""
-    paycheck_amt = 0
-    pay_occurrence = None
-    curr_checking = 0
+    name: str
+    paycheck_amt: float
+    pay_occurrence: occurrences
+    curr_checking: float
+    check_history: dll
 
     def __init__(self, name: str, paycheck_amt: float, pay_occurrence: str, last_check: list, curr_checking: float):
         """

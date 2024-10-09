@@ -4,36 +4,19 @@ from budget_app.payer import *
 from budget_app.expense import *
 
 class budget:
-    payers = []
-    """
-    {
-        "name": [expense(), expense() ...],
-        "name": [expense(), expense() ...],
-        "shared": [expense(), expense() ...]
-    }
-    """
-    expenses = {}
-    """
-    {
-        "name": float
-    }
-    """
-    rates = {}
+    payers = [payer]
+    expenses = [expense]
 
     def __init__(self, jsonFile):
         with open(jsonFile, "r") as jsonFile:
             budgetJson = json.load(jsonFile)
 
         for p in budgetJson["payers"]:
-            self.addPayer(payer=payer(p["name"], p["paycheck_amt"], p["pay_occurrence"], p["last_check"], p["curr_checking"]))
-            self.rates[p["name"]] = p["rate"]
+            self.payers.append(payer(p["name"], p["paycheck_amt"], p["pay_occurrence"], p["last_check"], p["curr_checking"]))
 
         for e in budgetJson["expenses"]:
             expense = jsonToExpense(e, self.payers)
-            if expense.shared:
-                self.expenses["shared"].append(expense)
-            else:
-                self.expenses[self.payers[e["payer"]].name].append(expense)
+            self.expenses.append(expense)
 
     def addPayer(self, payer):
         """
@@ -111,10 +94,5 @@ class budget:
         return bank
             
 
-
-    def clear(self):
-        self.payers = {}
-        self.expenses = {}
-        self.rates = {}
 
     
