@@ -7,18 +7,12 @@ class payer:
     pay_occurrence: occurrences
     curr_checking: float
     check_history: dll
+    idx: int
 
     def __init__(self, name: str, paycheck_amt: float, pay_occurrence: str, last_check: list, curr_checking: float):
-        """
-        Args:
-            name - name of payer
-            paycheck_amt - pay check amount
-            pay_occurrence - how often they get paid
-        """
         self.name = name
         self.paycheck_amt = paycheck_amt
         self.pay_occurrence = occurrences[pay_occurrence]
-        # TODO replace references to last_check with check_history
         self.check_history = dll(dt.date(last_check[0], last_check[1], last_check[2]))
         self.curr_checking = curr_checking
 
@@ -53,5 +47,7 @@ class payer:
         self.curr_checking += self.paycheck_amt
         return self.curr_checking
 
-    
+    def payBill(self, amt: float):
+        self.curr_checking -= amt
+        return self.curr_checking
     

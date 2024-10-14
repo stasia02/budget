@@ -5,7 +5,7 @@ from budget_app.doublyLinkedList import *
 
 class expense:
     shared = True
-    payer = None
+    payer: int
     cost = 0
     occurrence: occurrences
     bill_history: dll
