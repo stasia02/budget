@@ -1,10 +1,12 @@
 from tests.BudgetTest import *
+from budget_app.month import *
 
 def getNextDay(today):
     day = datetime.timedelta(1)
     return today+day
 
-b = BudgetTest()
+m = month(10, 24)
+#b = BudgetTest()
 """today = datetime.date.today()
 d1 = dll(today)
 d2 = dll(today)
@@ -19,5 +21,5 @@ try:
 except Exception as e:
     print(e)"""
 
-b.setUp()
-b.test_createPayer()
+#b.setUp()
+#b.test_createPayer()
