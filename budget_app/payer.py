@@ -24,6 +24,8 @@ class payer:
 
     # calculate next payday based on occurrence & last payday
     def getNextPay(self, last_check):
+        if isinstance(last_check, node):
+            last_check = last_check.value
         match self.pay_occurrence:
             case occurrences.SEMI_MONTHLY:
                 payday = last_check.day

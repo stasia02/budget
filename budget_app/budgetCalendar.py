@@ -19,25 +19,27 @@ class budgetCalendar():
         self.budget = budget
 
     def __call__(self, target_year=dt.date.today().year, target_month=dt.date.today().month) -> Any:
+        if target_year not in self.storage.keys():
+            self.storage[target_year] = {}
         if target_month-1 not in self.storage[target_year].keys():
-            entry = month(target_year, target_month)
+            entry = month(year=target_year, month=target_month)
             # add events
             for expense in self.budget.expenses:
                 # grab the last due date before first of target_month
                 curr = expense.bill_history[dt.date(target_year, target_month, 1)]
-                curr = curr.next if curr.next is not None else curr = expense.bill_history.next()
+                curr = curr.next if curr.next is not None else expense.next()
                 # iterate through every due date for the month
                 while curr.value <= dt.date(target_year, target_month, cal.monthrange(target_year, target_month)[1]):
                     # add date as an event
                     entry.days[curr.value.day-1].events.append(expense)
-                    curr = curr.next if curr.next is not None else curr = expense.bill_history.next()
+                    curr = curr.next if curr.next is not None else expense.next()
     
             for payer in self.budget.payers:
                 curr = payer.check_history[dt.date(target_year, target_month, 1)]
-                curr = curr.next if curr.next is not None else curr = payer.check_history.next()
+                curr = curr.next if curr.next is not None else payer.next()
                 while curr.value <= dt.date(target_year, target_month, cal.monthrange(target_year, target_month)):
                     entry.days[curr.value.day-1].events.append(payer)
-                    curr = curr.next if curr.next is not None else curr = payer.check_history.next()
+                    curr = curr.next if curr.next is not None else payer.next()
             self.getBudget(entry)
             self.storage[target_year][target_month] = entry
         self.display(self.storage[target_year][target_month])
@@ -85,7 +87,7 @@ class budgetCalendar():
             for payee in self.budget.payers:
                 day.balances[payee.idx] = payee.curr_checking
             
-    def genGraphs(self):
+    def graph(self, month:month):
         # generate graphs showing inflow/outflow of money
         pass
 

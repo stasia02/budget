@@ -4,8 +4,8 @@ from budget_app.payer import *
 from budget_app.expense import *
 
 class budget:
-    payers = [payer]
-    expenses = [expense]
+    payers = []
+    expenses = []
 
     def __init__(self, jsonFile):
         with open(jsonFile, "r") as jsonFile:

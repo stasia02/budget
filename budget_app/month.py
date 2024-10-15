@@ -7,7 +7,7 @@ class month:
     def __init__(self, month: int, year: int) -> None:
         self.month = month
         self.year = year
-        self.days = [day(year, month, date) if date != 0 else 0 for date in Calendar().itermonthdays(year=year, month=month)]
+        self.days = [day((year, month, date)) if date != 0 else 0 for date in Calendar(6).itermonthdays(year=year, month=month)]
 
     def getEndBalance(self):
         # as of right now this will return a list of the payers' balances.

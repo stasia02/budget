@@ -54,7 +54,7 @@ class dll:
         # return curr node of dll
         return self.curr
     
-    def next(self, func, args) -> node:
+    def next(self, func, arg) -> node:
         # check for next node
         if self.curr.next:
             # set curr node of dll to next node
@@ -63,7 +63,7 @@ class dll:
             return self.curr
         else:
             # create and set next node using getNextPay or getNextBill func
-            self.curr.next = node(pre=self.curr, value=func(*args))
+            self.curr.next = node(pre=self.curr, value=func(arg))
             # set curr node of dll to next node
             self.curr = self.curr.next
             self.length += 1

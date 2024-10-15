@@ -16,10 +16,13 @@ class expense:
         return
 
     def getNextBillDate(self, last_occur):
+        if isinstance(last_occur, node):
+            last_occur = last_occur.value
         match self.occurrence.name:
+            #TODO bimonthly, per_paycheck, change how yearly is calculated
             case "MONTHLY":
-                month = datetime.timedelta(days=30)
-                last_occur += month
+                datetime.date.today().repl
+                nxt_occur = last_occur.replace((last_occur.month+1)%12)
                 return last_occur
             case "YEARLY":
                 year = datetime.timedelta(days=365)
@@ -27,7 +30,7 @@ class expense:
                 return last_occur
 
     def next(self):
-        return self.bill_history.curr.next(self.getNextBillDate, self.bill_history.curr)
+        return self.bill_history.next(self.getNextBillDate, self.bill_history.curr)
 
     def __repr__(self) -> str:
         return "expense()"
