@@ -19,11 +19,14 @@ class dll:
         self.head = self.curr = node(value=date)
         self.length += 1
 
-    def __getitem__(self, date):
+    def __getitem__(self, args: tuple):
+        date, caller = args
         curr = self.head
         while curr and curr.value < date:
             if curr.next:
                 curr = curr.next
+            else:
+                curr = caller.next()
         return curr
 
     def __repr__(self) -> str:

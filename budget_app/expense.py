@@ -1,16 +1,17 @@
 import datetime
+from decimal import Decimal
 from copy import deepcopy
 from budget_app.occurrences import *
 from budget_app.doublyLinkedList import *
 
 class expense:
-    shared = True
+    shared: bool
     payer: int
-    cost = 0
+    cost: Decimal
     occurrence: occurrences
     bill_history: dll
     desc: str
-    split_rate = []
+    split_rate: list
      
     def __init__(self):
         return
@@ -19,15 +20,21 @@ class expense:
         if isinstance(last_occur, node):
             last_occur = last_occur.value
         match self.occurrence.name:
-            #TODO bimonthly, per_paycheck, change how yearly is calculated
             case "MONTHLY":
-                datetime.date.today().repl
-                nxt_occur = last_occur.replace((last_occur.month+1)%12)
-                return last_occur
+                mth = last_occur.month+1
+                if mth > 12:
+                    mth = mth - 12
+                nxt_occur = last_occur.replace(month=mth)
+                return nxt_occur
             case "YEARLY":
-                year = datetime.timedelta(days=365)
-                last_occur += year
-                return last_occur
+                nxt_occur = last_occur.replace(year=(last_occur.year+1))
+                return nxt_occur
+            case "BIMONTHLY":
+                mth = last_occur.month+2
+                if mth > 12:
+                    mth = mth - 12
+                nxt_occur = last_occur.replace(month=mth)
+                return nxt_occur
 
     def next(self):
         return self.bill_history.next(self.getNextBillDate, self.bill_history.curr)
@@ -43,7 +50,7 @@ def jsonToExpense(json: dict, payers: list):
     for key, item in json.items():
         match key:
             case "cost":
-                e.cost = item
+                e.cost = Decimal(item)
             case "occurrence":
                 e.occurrence = occurrences[item.upper()]
             case "desc":
@@ -57,7 +64,7 @@ def jsonToExpense(json: dict, payers: list):
             case "shared":
                 e.shared = item
             case "payer":
-                if item:
+                if item is not None:
                     e.payer = item
             case "split":
                 e.split_rate = item

@@ -1,20 +1,22 @@
 from budget_app.occurrences import *
 from budget_app.doublyLinkedList import *
 import datetime as dt
+from decimal import Decimal
+
 class payer:
     name: str
-    paycheck_amt: float
+    paycheck_amt: Decimal
     pay_occurrence: occurrences
-    curr_checking: float
+    curr_checking: Decimal
     check_history: dll
     idx: int
 
-    def __init__(self, name: str, paycheck_amt: float, pay_occurrence: str, last_check: list, curr_checking: float):
+    def __init__(self, name: str, paycheck_amt: str, pay_occurrence: str, last_check: list, curr_checking: str):
         self.name = name
-        self.paycheck_amt = paycheck_amt
+        self.paycheck_amt = Decimal(paycheck_amt)
         self.pay_occurrence = occurrences[pay_occurrence]
         self.check_history = dll(dt.date(last_check[0], last_check[1], last_check[2]))
-        self.curr_checking = curr_checking
+        self.curr_checking = Decimal(curr_checking)
 
     def __str__(self) -> str:
         return f"name: {self.name}, paycheck_amt: {self.paycheck_amt}, pay_occurrence: {self.pay_occurrence}"
@@ -46,10 +48,10 @@ class payer:
         return self.check_history.next(self.getNextPay, self.check_history.curr)
 
     def getPaid(self):
-        self.curr_checking += self.paycheck_amt
+        self.curr_checking += Decimal(self.paycheck_amt)
         return self.curr_checking
 
     def payBill(self, amt: float):
-        self.curr_checking -= amt
+        self.curr_checking -= Decimal(amt)
         return self.curr_checking
     

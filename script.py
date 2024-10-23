@@ -5,7 +5,7 @@ def getNextDay(today):
     day = datetime.timedelta(1)
     return today+day
 
-m = month(10, 24)
+m = month(10, 24, 2)
 #b = BudgetTest()
 """today = datetime.date.today()
 d1 = dll(today)
